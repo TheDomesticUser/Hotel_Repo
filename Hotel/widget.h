@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVector>
 #include <QString>
+#include <QSettings>
 
 namespace Ui {
 class Widget;
@@ -17,8 +18,6 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    void addUser();
-
 private slots:
     void on_signUpButton_clicked();
 
@@ -28,6 +27,8 @@ private:
     Ui::Widget *ui;
     int totalUsers = 0;
     QVector<QString> accounts;
+
+    void appendAccount();
 };
 
 #endif // WIDGET_H

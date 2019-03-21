@@ -27,7 +27,7 @@ void Widget::on_logInButton_clicked()
     logIn->exec();
 }
 
-void Widget::addUser()
+void Widget::appendAccount()
 {
 
 }
