@@ -6,6 +6,8 @@
 #include <QString>
 #include <QSettings>
 
+class Login;
+
 namespace Ui {
 class Widget;
 }
@@ -26,9 +28,17 @@ private slots:
 private:
     Ui::Widget *ui;
     int totalUsers = 0;
-    QVector<QString> accounts;
+    QVector<Login> accounts;
+};
 
-    void appendAccount();
+class Login
+{
+private:
+    QString username;
+    QString password;
+public:
+    QString returnUsername() { return username; }
+    QString returnPassword() { return password; }
 };
 
 #endif // WIDGET_H

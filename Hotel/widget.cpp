@@ -26,8 +26,3 @@ void Widget::on_logInButton_clicked()
     LogIn *logIn = new LogIn(this);
     logIn->exec();
 }
-
-void Widget::appendAccount()
-{
-
-}
