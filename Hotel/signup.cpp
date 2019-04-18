@@ -6,6 +6,7 @@
 #include <QRegExpValidator>
 #include <QRegExp>
 #include <QValidator>
+#include <QRegularExpression>
 
 SignUp::SignUp(QWidget *parent) :
     QDialog(parent),
@@ -24,16 +25,18 @@ SignUp::~SignUp()
 void SignUp::on_createAccountButton_clicked()
 {
     // Setup the regular expressions for validation
-    QRegExp verifyUsername("\\w{3,20}");
-    QRegExp verifyPassword("\\S{8,20}");
+    QRegularExpression verifyCharacters("[^a-zA-Z1-9]");
+    QRegExp verifyLength("\\S{8,20}");
 
     QString username = ui->usernameLineEdit->text();
     QString password = ui->passwordLineEdit->text();
     QString confirmPassword = ui->confirmPasswordLineEdit->text();
 
-    if (!verifyUsername.exactMatch(username))
+    if (verifyCharacters.match(username).hasMatch())
         ui->textPlaceholderLabel->setText("The username must contain 3-20 characters with no special symbols!");
-    else if (!verifyPassword.exactMatch(password))
+    else if (!verifyLength.exactMatch(username))
+        ui->textPlaceholderLabel->setText("The username must contain 8-20 characters with no spaces!");
+    else if (!verifyLength.exactMatch(password))
         ui->textPlaceholderLabel->setText("The password must contain 8-20 characters with no spaces!");
     else if (password != confirmPassword)
         ui->textPlaceholderLabel->setText("Your password does not equal to the confirmed password!");
@@ -41,5 +44,4 @@ void SignUp::on_createAccountButton_clicked()
         QMessageBox::information(this, "Success", "You have successfully created your account!");
         this->hide();
     }
-
 }

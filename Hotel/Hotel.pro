@@ -28,19 +28,27 @@ SOURCES += \
         main.cpp \
         widget.cpp \
     signup.cpp \
-    login.cpp
+    login.cpp \
+    hotel_lobby.cpp \
+    hotel_room.cpp
 
 HEADERS += \
         widget.h \
     signup.h \
-    login.h
+    login.h \
+    hotel_lobby.h \
+    hotel_room.h
 
 FORMS += \
         widget.ui \
     signup.ui \
-    login.ui
+    login.ui \
+    hotel_lobby.ui \
+    hotel_room.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
