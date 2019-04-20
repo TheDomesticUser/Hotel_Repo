@@ -2,6 +2,10 @@
 #define SIGNUP_H
 
 #include <QDialog>
+#include <QString>
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 namespace Ui {
 class SignUp;
@@ -20,6 +24,8 @@ private slots:
 
 private:
     Ui::SignUp *ui;
+    void accountStore(QString, QString);
+    QSqlDatabase db;
 };
 
 #endif // SIGNUP_H
