@@ -1,11 +1,8 @@
 #include "signup.h"
 #include "ui_signup.h"
-#include <QSettings>
-#include <QString>
+#include "widget.h"
 #include <QMessageBox>
-#include <QRegExpValidator>
 #include <QRegExp>
-#include <QValidator>
 #include <QRegularExpression>
 #include <QDate>
 
@@ -54,20 +51,13 @@ void SignUp::on_createAccountButton_clicked()
 void SignUp::accountStore(QString username, QString password)
 {
     QDate currentDate = QDate::currentDate();
+    Widget *widget = new Widget;
     QString databaseName = "hotel";
 
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setDatabaseName(databaseName);
-    db.setUserName("root");
-    db.setPassword("incorrect");
-    db.setHostName("localhost");
-    db.setPort(3306);
-    db.open();
-
-    if (!db.isOpen()) {
+    if (!widget->connectToDatabase("QMYSQL", databaseName, "root", "incorrect", "localhost", 3306)) {
         QMessageBox::critical(this, "Unsuccessful", "Opening the SQL database " + databaseName + "was unsuccessful");
     } else {
-        QSqlQuery query(db);
+        QSqlQuery query;
         query.prepare("INSERT INTO account(username, password, date_of_creation)"
                       "VALUES(:username, :password, :date_of_creation)");
         query.bindValue(":username", username);
@@ -76,5 +66,5 @@ void SignUp::accountStore(QString username, QString password)
 
         query.exec();
     }
-    db.close();
+    widget->closeDatabase();
 }

@@ -1,6 +1,7 @@
 #ifndef SIGNUP_H
 #define SIGNUP_H
 
+#include "widget.h"
 #include <QDialog>
 #include <QString>
 #include <QtSql>
@@ -25,7 +26,6 @@ private slots:
 private:
     Ui::SignUp *ui;
     void accountStore(QString, QString);
-    QSqlDatabase db;
 };
 
 #endif // SIGNUP_H

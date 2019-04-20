@@ -16,6 +16,11 @@ LogIn::~LogIn()
 
 void LogIn::on_loginButton_clicked()
 {
+    QString username = ui->usernameLabel->text();
+    QString password = ui->passwordLabel->text();
+
+
+
     Hotel_Lobby *hotel_lobby = new Hotel_Lobby;
     hotel_lobby->exec();
     this->hide();

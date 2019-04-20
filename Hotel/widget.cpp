@@ -26,3 +26,23 @@ void Widget::on_logInButton_clicked()
     LogIn *logIn = new LogIn(this);
     logIn->exec();
 }
+
+// This connects to a SQL database, accessing its query and information
+bool Widget::connectToDatabase(QString database, QString databaseName, QString user, QString pass, QString host, int port)
+{
+    db = QSqlDatabase::addDatabase(database);
+    db.setDatabaseName(databaseName);
+    db.setUserName(user);
+    db.setPassword(pass);
+    db.setHostName(host);
+    db.setPort(port);
+    db.open();
+
+    if (!db.isOpen()) return false;
+    return true;
+}
+
+void Widget::closeDatabase()
+{
+    db.close();
+}

@@ -2,6 +2,8 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <QString>
+#include <QSqlQuery>
 
 namespace Ui {
 class LogIn;
