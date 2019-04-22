@@ -19,9 +19,8 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
-    bool connectToDatabase(QString database, QString databaseName, QString user, QString pass, QString host, int port);
-
-    void closeDatabase();
+    QSqlDatabase createDatabase(QString db, QString dbName, QString connName, QString user,
+                                   QString pass, QString host, int port);
 
 private slots:
     void on_signUpButton_clicked();
@@ -30,8 +29,6 @@ private slots:
 
 private:
     Ui::Widget *ui;
-    int totalUsers = 0;
-    QSqlDatabase db;
 };
 
 #endif // WIDGET_H

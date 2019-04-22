@@ -27,22 +27,16 @@ void Widget::on_logInButton_clicked()
     logIn->exec();
 }
 
-// This connects to a SQL database, accessing its query and information
-bool Widget::connectToDatabase(QString database, QString databaseName, QString user, QString pass, QString host, int port)
+// This returns a SQL database, accessing the query and information
+QSqlDatabase Widget::createDatabase(QString db, QString dbName, QString connName,
+                                    QString user, QString pass, QString host, int port)
 {
-    db = QSqlDatabase::addDatabase(database);
-    db.setDatabaseName(databaseName);
-    db.setUserName(user);
-    db.setPassword(pass);
-    db.setHostName(host);
-    db.setPort(port);
-    db.open();
+    QSqlDatabase data = QSqlDatabase::addDatabase(db, connName);
+    data.setDatabaseName(dbName);
+    data.setUserName(user);
+    data.setPassword(pass);
+    data.setHostName(host);
+    data.setPort(port);
 
-    if (!db.isOpen()) return false;
-    return true;
-}
-
-void Widget::closeDatabase()
-{
-    db.close();
+    return data;
 }
