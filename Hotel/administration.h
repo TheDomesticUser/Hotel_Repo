@@ -20,9 +20,11 @@ public:
     ~Administration();
 
 private slots:
-    void on_accountsButton_clicked();
+
 
 private:
+    QString connName;
+    void openDatabase(QString connName, QString executeStatement);
     Ui::Administration *ui;
 };
 
